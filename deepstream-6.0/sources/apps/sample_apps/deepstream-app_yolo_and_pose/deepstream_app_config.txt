@@ -1,0 +1,107 @@
+[application]
+enable-perf-measurement=1
+perf-measurement-interval-sec=1
+
+[tiled-display]
+enable=0
+rows=1
+columns=1
+width=224
+height=224
+gpu-id=0
+nvbuf-memory-type=0
+
+
+[source0]
+enable=1
+
+# 1=Camera (V4L2), 2=URI, 3=MultiURI, 4=RTSP, 5=Camera (CSI; Jetson only)
+type=1
+
+# URI File Path
+uri=file:///opt/nvidia/deepstream/deepstream-6.0/samples/streams/sample_1080p_h264.mp4
+
+# only type 3, it's useful
+num-sources=1
+
+# Resolution
+camera-width=320
+camera-height=240
+
+# FPS
+camera-fps-n=30
+camera-fps-d=1
+
+# /dev/video0
+camera-v4l2-dev-node=0
+
+# only dGPU, it's useful
+gpu-id=0
+nvbuf-memory-type=0
+cudadec-memtype=0
+
+
+[sink0]
+enable=0
+#Type - 1=FakeSink 2=EglSink 3=File
+type=2
+sync=0
+source-id=0
+gpu-id=0
+nvbuf-memory-type=0
+
+
+[osd]
+enable=0
+gpu-id=0
+border-width=1
+text-size=15
+text-color=1;1;1;1;
+text-bg-color=0.3;0.3;0.3;1
+font=Serif
+show-clock=0
+clock-x-offset=800
+clock-y-offset=820
+clock-text-size=12
+clock-color=1;0;0;0
+nvbuf-memory-type=0
+#process-mode=2
+
+
+[streammux]
+gpu-id=0
+live-source=0
+batch-size=1
+
+# (1/max_fps)
+# 12fps source: 1 / 12 * 1000 * 1000 = 83333 (microseconds)
+# 25fps source: 1 / 25 * 1000 * 1000 = 40000 (microseconds)
+# 30fps source: 1 / 30 * 1000 * 1000 = 33333 (microseconds)
+batched-push-timeout=33333
+
+width=224
+height=224
+enable-padding=0
+nvbuf-memory-type=0
+
+
+[primary-gie]
+enable=1
+gpu-id=0
+gie-unique-id=1
+nvbuf-memory-type=0
+config-file=deepstream_pose_estimation_config.txt
+
+
+[secondary-gie0]
+enable=1
+gpu-id=0
+gie-unique-id=2
+operate-on-gie-id=1
+operate-on-class-ids=0;
+nvbuf-memory-type=0
+config-file=config_infer_primary0.txt
+
+
+[tests]
+file-loop=0

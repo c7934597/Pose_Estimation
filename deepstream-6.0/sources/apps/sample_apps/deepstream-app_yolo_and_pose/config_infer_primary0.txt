@@ -1,0 +1,40 @@
+[property]
+gpu-id=0
+net-scale-factor=0.0039215697906911373
+
+custom-network-config=yolov4-tiny-224.cfg
+model-file=yolov4-tiny-224.weights
+model-engine-file=model_b1_gpu0_fp16.engine
+labelfile-path=labels0.txt
+num-detected-classes=3
+
+# 0=RGB, 1=BGR
+model-color-format=0
+
+# 0=FP32, 1=INT8, 2=FP16 mode
+network-mode=2
+
+# 0=Detector, 1=Classifier, 2=Segmentation, 100=Other
+network-type=0
+
+# Enable tensor metadata output
+output-tensor-meta=1
+
+## 0=Group Rectangles, 1=DBSCAN, 2=NMS, 3= DBSCAN+NMS Hybrid, 4 = None(No clustering)
+cluster-mode=4
+
+batch-size=1
+process-mode=1
+
+interval=27
+gie-unique-id=2
+
+maintain-aspect-ratio=0
+parse-bbox-func-name=NvDsInferParseYolo
+custom-lib-path=nvdsinfer_custom_impl_Yolo/libnvdsinfer_custom_impl_Yolo.so
+engine-create-func-name=NvDsInferYoloCudaEngineGet
+
+# workspace-size=8000
+
+[class-attrs-all]
+pre-cluster-threshold=0.25

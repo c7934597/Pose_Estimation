@@ -1,0 +1,16 @@
+port_lock = 1
+portnumber = 21567
+ipaddress = 192.168.55.1
+pose_estimation_muxer_output_width = 224
+pose_estimation_muxer_output_height = 224
+open_send_socket_count_limit = 1
+send_socket_count_limit = 5400
+open_hand_lock = 0
+PoseWarningLimit = 1
+LeftArmMin = 45
+LeftArmMax = 145
+RightArmMin = 45
+RightArmMax = 145
+PeopleWarningLimit = 8
+NobodyWarningLimit = 1
+SuspiciousItemWarningLimit = 1
